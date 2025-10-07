@@ -78,15 +78,12 @@ if (slides.length > 0) {
 // --- Damodara Audio Player ---
 const playBtn = document.getElementById('play-audio');
 const audioBlock = document.getElementById('damodara-audio');
+const audioElement = audioBlock.querySelector('audio');
 if (playBtn && audioBlock) {
     playBtn.addEventListener('click', function() {
         playBtn.style.display = 'none';
         audioBlock.style.display = 'block';
-        // Try to auto-play by resetting src (works in some browsers)
-        const scPlayer = document.getElementById('sc-player');
-        if (scPlayer) {
-            scPlayer.src = scPlayer.src;
-        }
+        audioElement.play();
     });
 }
 
@@ -98,4 +95,17 @@ if (versesContainer) {
         .then(html => {
             versesContainer.innerHTML = html;
         });
+}
+
+// --- Register Service Worker for PWA ---
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
 }

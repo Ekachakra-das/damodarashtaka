@@ -22,12 +22,17 @@ body {
     position: relative;
 }
 .font-controls {
-    position: absolute;
-    top: -6px;
-    right: 24px;
+    position: relative;
+    right:0px;
     display: flex;
     gap: 0;
-    margin-top: 16px;
+    margin: -0px auto -30px !important;
+    max-width: 1200px;
+    justify-content: flex-end;
+}
+.font-controls-right {
+    display: flex;
+    justify-content: flex-end;
 }
 .font-controls button {
     padding: 3px 9px;
@@ -210,12 +215,17 @@ tr.separator.secondPart td {
         padding: 16px;
     }
     table {
-        font-size: calc(13px * var(--font-scale));
         grid-column: auto;
     }
     .header-section {padding: 0 15px;}
     th, td {
         padding: 10px 16px;
+    }
+    td:nth-child(1) {
+        width: 45%;
+    }
+    td:nth-child(2) {
+        width: 55%;
     }
 .font-controls {
 top: -14px;
