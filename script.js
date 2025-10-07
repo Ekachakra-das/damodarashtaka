@@ -64,7 +64,7 @@ function nextSlide() {
 }
 function startSlider() {
     if (sliderTimer) clearInterval(sliderTimer);
-    sliderTimer = setInterval(nextSlide, 4000);
+    sliderTimer = setInterval(nextSlide, 10000);
 }
 if (slides.length > 0) {
     showSlide(currentSlide);
@@ -73,4 +73,29 @@ if (slides.length > 0) {
         nextSlide();
         startSlider();
     });
+}
+
+// --- Damodara Audio Player ---
+const playBtn = document.getElementById('play-audio');
+const audioBlock = document.getElementById('damodara-audio');
+if (playBtn && audioBlock) {
+    playBtn.addEventListener('click', function() {
+        playBtn.style.display = 'none';
+        audioBlock.style.display = 'block';
+        // Try to auto-play by resetting src (works in some browsers)
+        const scPlayer = document.getElementById('sc-player');
+        if (scPlayer) {
+            scPlayer.src = scPlayer.src;
+        }
+    });
+}
+
+// --- Load verses from verses.html ---
+const versesContainer = document.getElementById('verses');
+if (versesContainer) {
+    fetch('verses.html')
+        .then(response => response.text())
+        .then(html => {
+            versesContainer.innerHTML = html;
+        });
 }
