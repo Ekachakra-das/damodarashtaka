@@ -76,6 +76,10 @@ if (slides.length > 0) {
 }
 
 // --- Damodara Audio Player ---
+function isMobile() {
+    return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+}
+
 const playBtn = document.getElementById('play-audio');
 const audioBlock = document.getElementById('damodara-audio');
 const audioElement = audioBlock.querySelector('audio');
@@ -83,7 +87,12 @@ if (playBtn && audioBlock) {
     playBtn.addEventListener('click', function() {
         playBtn.style.display = 'none';
         audioBlock.style.display = 'block';
-        audioElement.play();
+        if (isMobile()) {
+            audioElement.play();
+        } else {
+            // Embed SoundCloud for desktop
+            audioBlock.innerHTML = '<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/user-787531012/aindra-prabhu-damodarashtakam&auto_play=true&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>';
+        }
     });
 }
 
