@@ -149,7 +149,7 @@ tr.separator.secondPart td {
 .damodara-slider {
     width: 100%;
     max-width: 480px;
-    margin: 0 0 32px 0;
+    margin: 0 0 15px 0;
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -175,17 +175,14 @@ tr.separator.secondPart td {
     opacity: 1;
     z-index: 2;
 }
-.audio-play-btn, .audio-play-btn * {
-    cursor: pointer;
-}
 .audio-play-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 18px;
+    padding: 7px 14px;
     font-size: 15px;
     background: linear-gradient(90deg, #f7f7fa 0%, #e3f0ff 100%);
-    color: #007aff;
+    color: #007bffd2;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     cursor: pointer;
