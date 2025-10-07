@@ -103,6 +103,11 @@ if (versesContainer) {
         .then(response => response.text())
         .then(html => {
             versesContainer.innerHTML = html;
+            // Add IDs to verse sections for navigation
+            const verseSections = versesContainer.querySelectorAll('.verse-section');
+            verseSections.forEach((section, index) => {
+                section.id = `verse-${index + 1}`;
+            });
         });
 }
 
@@ -116,5 +121,60 @@ if ('serviceWorker' in navigator) {
             .catch(registrationError => {
                 console.log('SW registration failed: ', registrationError);
             });
+    });
+}
+
+// --- Hamburger Menu for Verse Navigation ---
+const hamburgerMenu = document.getElementById('hamburger-menu');
+let menuPopup = null;
+
+function createMenuPopup() {
+    menuPopup = document.createElement('div');
+    menuPopup.className = 'menu-popup';
+    menuPopup.innerHTML = `
+        <div class="menu-content">
+            <span class="close-menu">&times;</span>
+            <h3>Navigate to Verse</h3>
+            <ul>
+                <li><a href="#verse-1">Verse 1</a></li>
+                <li><a href="#verse-2">Verse 2</a></li>
+                <li><a href="#verse-3">Verse 3</a></li>
+                <li><a href="#verse-4">Verse 4</a></li>
+                <li><a href="#verse-5">Verse 5</a></li>
+                <li><a href="#verse-6">Verse 6</a></li>
+                <li><a href="#verse-7">Verse 7</a></li>
+                <li><a href="#verse-8">Verse 8</a></li>
+            </ul>
+        </div>
+    `;
+    document.body.appendChild(menuPopup);
+
+    // Event listeners
+    menuPopup.addEventListener('click', (e) => {
+        if (e.target === menuPopup || e.target.classList.contains('close-menu')) {
+            menuPopup.classList.remove('show');
+        }
+    });
+
+    const links = menuPopup.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+            menuPopup.classList.remove('show');
+        });
+    });
+}
+
+if (hamburgerMenu) {
+    hamburgerMenu.addEventListener('click', () => {
+        if (!menuPopup) {
+            createMenuPopup();
+        }
+        menuPopup.classList.add('show');
     });
 }
