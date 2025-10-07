@@ -247,10 +247,15 @@ top: -14px;
     body.simple-view .full-translation {
         background: #fbfbfd;
         padding-top: 0;
+        font-size: calc(16px * var(--font-scale)) !important;
+        padding: 22px 14px 15px !important;
     }
     body.simple-view .simple-sanskrit {
-        padding-bottom: 0;
+        font-size: calc(16px * var(--font-scale)) !important;
+        font-style: italic;
+        padding: 15px 14px 0 !important;
     }
+    
 }
 @media (min-width: 769px) {
     .container {
@@ -288,3 +293,5 @@ body.simple-view .full-translation {
 body.simple-view .simple-sanskrit {
     padding-bottom: 0;
 }
+
+
