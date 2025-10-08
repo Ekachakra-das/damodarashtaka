@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damodarāṣṭakam — Sacred Prayer App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             font-family: 'SF Pro Display', Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
@@ -21,6 +21,7 @@
                         gap: 40px;
                         justify-content: center;
                         align-items: flex-start;
+                        padding:15px 0 0;
                     }
                     @media (max-width: 768px) {
                         .reading-experience-card {
@@ -81,7 +82,6 @@
             max-width: 1024px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 20px;
             padding: 48px;
             box-shadow: 0 20px 60px rgba(15,23,42,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -170,7 +170,7 @@
             max-width: 280px;
             scroll-snap-align: start;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(2,6,23,0.12);
+            box-shadow: 0 4px 16px rgba(2,6,23,0.08);
             overflow: hidden;
             transition: transform 0.3s ease;
         }
@@ -208,8 +208,8 @@
                 height: 480px;
             }
             .slide {
-                flex: 0 0 200px;
-                max-width: 200px;
+                flex: 0 0 250px;
+                max-width: 250px;
             }
             .carousel {
                 gap: 8px;
@@ -314,6 +314,12 @@
             .features {
                 grid-template-columns: 1fr;
             }
+            .screenshot-carousel {
+                padding: 12px;
+            }
+            .screenshot-carousel::after {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -341,7 +347,7 @@
                                 <ul class="feature-list">
                                     <li><i class="fas fa-font"></i> <b>Font Controls:</b> Adjustable text size for comfortable reading</li>
                                     <li><i class="fas fa-language"></i> <b>Bilingual Support:</b> Switch between English and Russian translations</li>
-                                    <li><i class="fas fa-wifi-slash"></i> <b>Offline Mode:</b> Works without internet connection</li>
+                                    <li><i class="fas fa-wifi"></i> <b>Offline Mode:</b> Works without internet connection</li>
                                 </ul>
                             </div>
                         </div>
@@ -361,7 +367,7 @@
         </div>
 
         <div id="install" class="install-section">
-            <h3>📱 ⚡ Install as native app, works offline</h3>
+            <h3>📱 ⚡ Install as native app <small style="font-weight: normal;">(works offline)</small></h3>
             <ol class="install-steps">
                 <li><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></li>
                 <li><i class="fab fa-android"></i> <strong>On Android/Chromium:</strong> tap the browser menu → <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong></li>
