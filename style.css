@@ -281,7 +281,7 @@ body.lang-ru .text-ru {
     .full-translation {
         padding: 22px 16px 10px;
         grid-column: auto;
-        background: linear-gradient(90deg, #b4c9de 0%, #e7edec 100%) top / 100% 12px no-repeat, #fbfbfd;
+        background: linear-gradient(90deg, #b4c9de 0%, #e7edec 100%) top / 100% 8px no-repeat, #fbfbfd;
     }
     body.simple-view .full-translation {
         background: #fbfbfd;

@@ -12,6 +12,72 @@
             color: #1e293b;
             background: #ffffff;
         }
+                    /* Simplified Reading Experience Section */
+                    .reading-experience-card {
+                        max-width: 600px;
+                        margin: 0 auto 30px;
+                        text-align: center;
+                    }
+                    .reading-experience-card h2 {
+                        color: #1d1d1f;
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-bottom: 12px;
+                    }
+                    .reading-experience-card ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0 0 24px 0;
+                    }
+                    .reading-experience-card li {
+                        font-size: 17px;
+                        line-height: 1.5;
+                        margin-bottom: 16px;
+                        color: #424245;
+                        text-align: left;
+                        position: relative;
+                        padding-left: 24px;
+                    }
+                    .reading-experience-card li:before {
+                        content: '\2022';
+                        position: absolute;
+                        left: 0;
+                        color: #4f8cff;
+                        font-size: 14px;
+                        top: 4px;
+                    }
+                    .reading-experience-card .features-title {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #1d1d1f;
+                        margin: 30px 0 10px 0;
+                    }
+                    .reading-experience-card .feature-list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+                    .reading-experience-card .feature-list li {
+                        font-size: 16px;
+                        line-height: 1.5;
+                        margin-bottom: 12px;
+                        color: #424245;
+                        text-align: left;
+                        position: relative;
+                        padding-left: 24px;
+                    }
+                    .reading-experience-card .feature-list li:before {
+                        content: '\2022';
+                        position: absolute;
+                        left: 0;
+                        color: #4f8cff;
+                        font-size: 12px;
+                        top: 4px;
+                    }
+                    .reading-experience-card b {
+                        color: #1d1d1f;
+                    }
+
         .container {
             max-width: 1024px;
             margin: 0 auto;
@@ -175,14 +241,21 @@
         <h1>Damodarāṣṭakam</h1>
 
         <div class="description">
-            A beautiful Web App for the sacred Damodarāṣṭakam prayer.<br><br>
 
-            <div style="text-align: center; margin-bottom: 15px; font-weight: 600; color: #1e293b; font-size: 18px;">Choose Your Reading Experience:</div>
+                        A beautiful Web App for the sacred Damodarāṣṭakam prayer.<br><br>
 
-            <ul style="text-align: left; display: inline-block; margin: 0 auto; padding-left: 20px; color: #475569; font-size: 16px; line-height: 1.8;">
-                <li><strong>Detailed word-by-word mode:</strong> Sanskrit translation with grammatical analysis for deep understanding</li>
-                <li><strong>Standard mode:</strong> with Sanskrit transliteration and full translation</li>
-            </ul><br>
+                        <div class="reading-experience-card">
+                            <h2>Choose Your Reading Experience:</h2>
+                            <ul>
+                                <li><b>Detailed word-by-word mode:</b> Sanskrit translation with grammatical analysis for deep understanding</li>
+                                <li><b>Standard mode:</b> with Sanskrit transliteration and full translation</li>
+                            </ul>
+                            <div class="features-title">Additional Features:</div>
+                            <ul class="feature-list">
+                                <li><b>Font Controls:</b> Adjustable text size for comfortable reading</li>
+                                <li><b>Bilingual Support:</b> Switch between English and Russian translations</li>
+                            </ul>
+                        </div>
 
         </div>
 
