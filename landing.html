@@ -14,15 +14,31 @@
         }
                     /* Simplified Reading Experience Section */
                     .reading-experience-card {
-                        max-width: 600px;
-                        margin: 0 auto 30px;
-                        text-align: center;
+                        max-width: 900px;
+                        margin: 0 auto;
+                        display: flex;
+                        gap: 40px;
+                        justify-content: center;
+                        align-items: flex-start;
                     }
-                    .reading-experience-card h2 {
+                    @media (max-width: 768px) {
+                        .reading-experience-card {
+                            flex-direction: column;
+                            gap: 20px;
+                        }
+                    }
+                    .reading-modes, .additional-features {
+                        flex: 1;
+                        text-align: left;
+                    }
+                    .section-title {
                         color: #1d1d1f;
                         font-size: 20px;
                         font-weight: 600;
-                        margin-bottom: 12px;
+                        margin:0 0 12px 0;
+                    }
+                    .features-title {
+                        font-size: 16px !important;
                     }
                     .reading-experience-card ul {
                         list-style: none;
@@ -43,14 +59,14 @@
                         position: absolute;
                         left: 0;
                         color: #4f8cff;
-                        font-size: 14px;
+                        font-size: 18px;
                         top: 4px;
                     }
                     .reading-experience-card .features-title {
-                        font-size: 16px;
+                        font-size: 20px;
                         font-weight: 600;
                         color: #1d1d1f;
-                        margin: 30px 0 10px 0;
+                        margin-bottom: 12px;
                     }
                     .reading-experience-card .feature-list {
                         list-style: none;
@@ -69,10 +85,10 @@
                     .reading-experience-card .feature-list li:before {
                         content: '\2022';
                         position: absolute;
-                        left: 0;
+                        left: 4px;
                         color: #4f8cff;
-                        font-size: 12px;
-                        top: 4px;
+                        font-size: 20px;
+                        top: -3px;
                     }
                     .reading-experience-card b {
                         color: #1d1d1f;
@@ -137,27 +153,116 @@
             font-size: 24px;
             font-weight: 600;
         }
-        .screenshot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .screenshot {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            color: #475569;
+        .screenshot-carousel {
+            position: relative;
+            margin: 20px 0;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(15,23,42,0.06);
             border: 1px solid #f1f5f9;
+        }
+        .carousel {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 20px 12px 28px 12px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+        .carousel::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg,#667eea,#764ba2);
+            border-radius: 999px;
+        }
+        .carousel::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 999px;
+        }
+        .slide {
+            flex: 0 0 280px;
+            max-width: 280px;
+            scroll-snap-align: start;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(2,6,23,0.12);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .slide:hover {
+            transform: translateY(-4px);
+        }
+        .slide img {
+            display: block;
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+        }
+        .screenshot-carousel::after {
+            content: '';
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            height: calc(100% - 48px);
+            width: 32px;
+            background: linear-gradient(90deg,rgba(255,255,255,0),#ffffff);
+            pointer-events: none;
+            border-radius: 0 16px 16px 0;
+        }
+        @media (max-width: 900px) {
+            .slide img {
+                height: 420px;
+            }
+            .slide {
+                flex: 0 0 240px;
+                max-width: 240px;
+            }
+        }
+        @media (max-width: 520px) {
+            .slide img {
+                height: 480px;
+            }
+            .slide {
+                flex: 0 0 200px;
+                max-width: 200px;
+            }
+            .carousel {
+                gap: 8px;
+                padding: 12px 6px 20px 6px;
+            }
+            .screenshot-carousel::after {
+                width: 20px;
+            }
+        }
+        @media (max-width: 380px) {
+            .slide img {
+                height: 480px;
+            }
+            .slide {
+                flex: 0 0 180px;
+                max-width: 180px;
+            }
+            .carousel {
+                gap: 6px;
+                padding: 10px 4px 18px 4px;
+            }
         }
         .install-section {
             background: #ffffff;
-            padding: 30px;
+            padding: 5px 30px 15px;
             border-radius: 12px;
             margin-bottom: 30px;
             border: 1px solid #f1f5f9;
             box-shadow: 0 8px 32px rgba(15,23,42,0.06);
+            transition: all 0.3s ease;
+        }
+        .install-section.highlight {
+            background: #e6f3ff;
+            border-color: #0066cc;
+            box-shadow: 0 8px 32px rgba(0,102,204,0.2);
+            transform: scale(1.02);
         }
         .install-section h3 {
             color: #1e293b;
@@ -194,24 +299,35 @@
             font-size: 12px;
             font-weight: bold;
         }
-        .cta-button {
+        .btn {
             display: inline-block;
-            background: linear-gradient(135deg,#667eea,#764ba2);
-            color: white;
             padding: 14px 24px;
-            text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
             font-size: 16px;
             text-align: center;
-            margin: 20px 0;
+            text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
             border: none;
         }
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(102,126,234,0.3);
+        }
+        .btn-ghost {
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            background: white;
+        }
+        .btn-ghost:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-1px);
         }
         .footer {
             text-align: center;
@@ -242,34 +358,41 @@
 
         <div class="description">
 
-                        A beautiful Web App for the sacred Damodarāṣṭakam prayer.<br><br>
+                        Web App for the sacred Damodarāṣṭakam prayer.<br><br>
 
                         <div class="reading-experience-card">
-                            <h2>Choose Your Reading Experience:</h2>
-                            <ul>
-                                <li><b>Detailed word-by-word mode:</b> Sanskrit translation with grammatical analysis for deep understanding</li>
-                                <li><b>Standard mode:</b> with Sanskrit transliteration and full translation</li>
-                            </ul>
-                            <div class="features-title">Additional Features:</div>
-                            <ul class="feature-list">
-                                <li><b>Font Controls:</b> Adjustable text size for comfortable reading</li>
-                                <li><b>Bilingual Support:</b> Switch between English and Russian translations</li>
-                            </ul>
+                            <div class="reading-modes">
+                                <h2 class="section-title">Choose Your Reading Experience:</h2>
+                                <ul class="feature-list">
+                                    <li><b>Detailed word-by-word mode:</b> Sanskrit translation with grammatical analysis for deep understanding</li>
+                                    <li><b>Standard mode:</b> with Sanskrit transliteration and full translation</li>
+                                </ul>
+                            </div>
+                            <div class="additional-features">
+                                <h2 class="section-title features-title">Additional Features:</h2>
+                                <ul class="feature-list">
+                                    <li><b>Font Controls:</b> Adjustable text size for comfortable reading</li>
+                                    <li><b>Bilingual Support:</b> Switch between English and Russian translations</li>
+                                    <li><b>Offline Mode:</b> Works without internet connection</li>
+                                </ul>
+                            </div>
                         </div>
 
         </div>
 
         <div class="screenshots">
-            <h3>📱 App Screenshots</h3>
-            <div class="screenshot-grid">
-                <div class="screenshot">Screenshot 1<br>(Verse Display)</div>
-                <div class="screenshot">Screenshot 2<br>(Menu Navigation)</div>
-                <div class="screenshot">Screenshot 3<br>(Audio Player)</div>
-                <div class="screenshot">Screenshot 4<br>(Settings)</div>
+            <h3>Screenshots</h3>
+            <div class="screenshot-carousel">
+                <div class="carousel" role="list" aria-label="App screenshots">
+                    <div class="slide"><img src="screenshots/1.jpeg" alt="Damodarashtakam screenshot 1" loading="lazy"></div>
+                    <div class="slide"><img src="screenshots/2.jpeg" alt="Damodarashtakam screenshot 2" loading="lazy"></div>
+                    <div class="slide"><img src="screenshots/3.jpeg" alt="Damodarashtakam screenshot 3" loading="lazy"></div>
+                    <div class="slide"><img src="screenshots/4.jpeg" alt="Damodarashtakam screenshot 4" loading="lazy"></div>
+                </div>
             </div>
         </div>
 
-        <div class="install-section">
+        <div id="install" class="install-section">
             <h3>📱⚡ Install as native app, works offline</h3>
             <ol class="install-steps">
                 <li><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></li>
@@ -280,13 +403,37 @@
             </ol>
         </div>
 
-        <div style="text-align: center;">
-            <a href="index.html" class="cta-button">Open App</a>
+        <div style="text-align: center; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="#install" class="btn btn-ghost">How to Install</a>
+            <a href="index.html" class="btn cta-button">Open App</a>
         </div>
 
         <div class="footer">
-            © 2025 Damodarāṣṭakam • Sacred Vaishnava Prayer
+        Damodarāṣṭakam • Sacred Vaishnava Prayer
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const installBtn = document.querySelector('.btn-ghost');
+            const installSection = document.getElementById('install');
+
+            installBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                installSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Blink twice
+                installSection.classList.add('highlight');
+                setTimeout(() => {
+                    installSection.classList.remove('highlight');
+                    setTimeout(() => {
+                        installSection.classList.add('highlight');
+                        setTimeout(() => {
+                            installSection.classList.remove('highlight');
+                        }, 300);
+                    }, 300);
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>
