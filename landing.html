@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damodarāṣṭakam — Sacred Prayer App</title>
+    <style>
+        body {
+            font-family: 'SF Pro Display', Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+            line-height: 1.6;
+            margin: 0;
+            color: #1e293b;
+            background: #ffffff;
+        }
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(15,23,42,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        h1 {
+            margin: 0 0 16px;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .description {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 18px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .feature {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 8px 32px rgba(15,23,42,0.06);
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .screenshots {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .screenshots h3 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .screenshot {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #475569;
+            border: 1px solid #f1f5f9;
+        }
+        .install-section {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 8px 32px rgba(15,23,42,0.06);
+        }
+        .install-section h3 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .install-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .install-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: #475569;
+            font-size: 16px;
+        }
+        .install-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
+            padding: 14px 24px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102,126,234,0.3);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 10px;">
+            <img src="favicon/icon-192.png" alt="Damodarāṣṭakam App Icon" style="width: 80px; height: 80px; border-radius: 20px; box-shadow: 0 8px 24px rgba(15,23,42,0.15);">
+        </div>
+        <h1>Damodarāṣṭakam</h1>
+
+        <div class="description">
+            A beautiful Web App for the sacred Damodarāṣṭakam prayer.<br><br>
+
+            <div style="text-align: center; margin-bottom: 15px; font-weight: 600; color: #1e293b; font-size: 18px;">Choose Your Reading Experience:</div>
+
+            <ul style="text-align: left; display: inline-block; margin: 0 auto; padding-left: 20px; color: #475569; font-size: 16px; line-height: 1.8;">
+                <li><strong>Detailed word-by-word mode:</strong> Sanskrit translation with grammatical analysis for deep understanding</li>
+                <li><strong>Standard mode:</strong> with Sanskrit transliteration and full translation</li>
+            </ul><br>
+
+        </div>
+
+        <div class="screenshots">
+            <h3>📱 App Screenshots</h3>
+            <div class="screenshot-grid">
+                <div class="screenshot">Screenshot 1<br>(Verse Display)</div>
+                <div class="screenshot">Screenshot 2<br>(Menu Navigation)</div>
+                <div class="screenshot">Screenshot 3<br>(Audio Player)</div>
+                <div class="screenshot">Screenshot 4<br>(Settings)</div>
+            </div>
+        </div>
+
+        <div class="install-section">
+            <h3>📱⚡ Install as native app, works offline</h3>
+            <ol class="install-steps">
+                <li><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></li>
+                <li><strong>On Android/Chromium:</strong> tap the browser menu → <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong></li>
+                <li><strong>On iOS (Safari):</strong> tap the Share button → <strong>"Add to Home Screen"</strong></li>
+                <li><strong>On iOS (Chrome):</strong> open the Share menu and select <strong>"Add to Home Screen"</strong> if available; if not, open the page in Safari</li>
+                <li><strong>Desktop Chrome:</strong> Use the install button in the address bar or in the menu find → <strong>Install</strong></li>
+            </ol>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="cta-button">Open App</a>
+        </div>
+
+        <div class="footer">
+            © 2025 Damodarāṣṭakam • Sacred Vaishnava Prayer
+        </div>
+    </div>
+</body>
+</html>

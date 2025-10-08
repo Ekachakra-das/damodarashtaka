@@ -109,11 +109,11 @@ function toggleViewHandler() {
     if (isSimple) {
         body.classList.remove('simple-view');
         currentView = 'detailed';
-        this.textContent = 'Switch to Simple Edition';
+        this.textContent = currentLanguage === 'ru' ? 'Простая версия' : 'Switch to Simple Edition';
     } else {
         body.classList.add('simple-view');
         currentView = 'simple';
-        this.textContent = 'Switch to Detailed Edition';
+        this.textContent = currentLanguage === 'ru' ? 'Подробная версия' : 'Switch to Detailed Edition';
     }
 
     // Save view preference
@@ -208,23 +208,29 @@ function createMenuPopup() {
             
             <div class="navigation-section">
                 <ul id="menu-list">
-                    <li><a href="#verse-1">Verse 1</a></li>
-                    <li><a href="#verse-2">Verse 2</a></li>
-                    <li><a href="#verse-3">Verse 3</a></li>
-                    <li><a href="#verse-4">Verse 4</a></li>
-                    <li><a href="#verse-5">Verse 5</a></li>
-                    <li><a href="#verse-6">Verse 6</a></li>
-                    <li><a href="#verse-7">Verse 7</a></li>
-                    <li><a href="#verse-8">Verse 8</a></li>
+                    <li><a href="#verse-1">${currentLanguage === 'ru' ? 'Стих 1' : 'Verse 1'}</a></li>
+                    <li><a href="#verse-2">${currentLanguage === 'ru' ? 'Стих 2' : 'Verse 2'}</a></li>
+                    <li><a href="#verse-3">${currentLanguage === 'ru' ? 'Стих 3' : 'Verse 3'}</a></li>
+                    <li><a href="#verse-4">${currentLanguage === 'ru' ? 'Стих 4' : 'Verse 4'}</a></li>
+                    <li><a href="#verse-5">${currentLanguage === 'ru' ? 'Стих 5' : 'Verse 5'}</a></li>
+                    <li><a href="#verse-6">${currentLanguage === 'ru' ? 'Стих 6' : 'Verse 6'}</a></li>
+                    <li><a href="#verse-7">${currentLanguage === 'ru' ? 'Стих 7' : 'Verse 7'}</a></li>
+                    <li><a href="#verse-8">${currentLanguage === 'ru' ? 'Стих 8' : 'Verse 8'}</a></li>
                 </ul>
             </div>
             <div class="toggle-section">
                 <button id="toggleView" style="width: 100%; padding: 12px 16px; background: #007aff; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; transition: background 0.2s ease;">
-                    ${document.body.classList.contains('simple-view') ? 'Switch to Detailed Edition' : 'Switch to Simple Edition'}
+                    ${document.body.classList.contains('simple-view')
+                        ? (currentLanguage === 'ru' ? 'Подробная версия' : 'Switch to Detailed Edition')
+                        : (currentLanguage === 'ru' ? 'Простая версия' : 'Switch to Simple Edition')}
                 </button>
                 ${document.body.classList.contains('simple-view')
-                    ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word breakdown with grammatical analysis</small>'
-                    : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown</small>'}
+                    ? (currentLanguage === 'ru'
+                        ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Подробная версия показывает пословный перевод</small>'
+                        : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word breakdown</small>')
+                    : (currentLanguage === 'ru'
+                        ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Простая версия показывает только санскритский текст и полный перевод, без разбивки по словам</small>'
+                        : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown</small>')}
                 <button id="toggleLanguage" style="width: 100%; padding: 10px 16px; margin-top: 12px; background: #28a745; color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: background 0.2s ease;">
                     ${currentLanguage === 'en' ? 'Switch to Russian' : 'Switch to English'}
                 </button>

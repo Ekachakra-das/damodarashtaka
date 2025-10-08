@@ -176,6 +176,20 @@ tr.separator.secondPart td {
     color: #888;
     font-style: normal;
 }
+
+/* Language-specific text visibility */
+.text-en, .text-ru {
+    display: none;
+}
+
+body.lang-en .text-en {
+    display: inline;
+}
+
+body.lang-ru .text-ru {
+    display: inline;
+}
+
 .damodara-slider {
     width: 100%;
     max-width: 480px;
