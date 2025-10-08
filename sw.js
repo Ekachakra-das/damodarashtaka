@@ -1,4 +1,4 @@
-const CACHE_NAME = 'damodarashtakam-v3';
+const CACHE_NAME = 'damodarashtakam-v3.1';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -9,17 +9,20 @@ const urlsToCache = [
   '/manifest.json',
   '/img/1 Large.jpeg',
   '/img/2 Large.jpeg',
-  '/img/3 Large.jpeg',
-  '/screenshots/1.jpeg',
-  '/screenshots/2.jpeg',
-  '/screenshots/3.jpeg',
-  '/screenshots/4.jpeg'
+  '/img/3 Large.jpeg'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
 

@@ -152,7 +152,7 @@ tr.separator td {
 }
 tr.separator.secondPart td {
     height: 8px;
-    background: linear-gradient(90deg, #b4c9de 0%, #e7edec 100%);
+    background: linear-gradient(90deg, #c1d2e4 0%, #e7edec 100%);
     border-bottom: none;
 }
 .damodara-description {
