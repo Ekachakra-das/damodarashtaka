@@ -36,8 +36,7 @@ btnDefault.addEventListener('click', function() {
 updateFontSize();
 
 // Toggle simple/detailed view
-const toggleViewBtn = document.getElementById('toggleView');
-toggleViewBtn.addEventListener('click', function() {
+function toggleViewHandler() {
     const body = document.body;
     const isSimple = body.classList.contains('simple-view');
     if (isSimple) {
@@ -47,7 +46,18 @@ toggleViewBtn.addEventListener('click', function() {
         body.classList.add('simple-view');
         this.textContent = 'Switch to Detailed Edition';
     }
-});
+    // Close the menu if open
+    if (menuPopup) {
+        menuPopup.classList.remove('show');
+    }
+    // Force recreate menu popup on next open to update explanatory text
+    menuPopup = null;
+}
+
+const toggleViewBtn = document.getElementById('toggleView');
+if (toggleViewBtn) {
+    toggleViewBtn.addEventListener('click', toggleViewHandler);
+}
 
 // --- Damodara Slider ---
 const slides = document.querySelectorAll('.damodara-slide');
@@ -134,20 +144,36 @@ function createMenuPopup() {
     menuPopup.innerHTML = `
         <div class="menu-content">
             <span class="close-menu">&times;</span>
-            <h3>Navigate to Verse</h3>
-            <ul>
-                <li><a href="#verse-1">Verse 1</a></li>
-                <li><a href="#verse-2">Verse 2</a></li>
-                <li><a href="#verse-3">Verse 3</a></li>
-                <li><a href="#verse-4">Verse 4</a></li>
-                <li><a href="#verse-5">Verse 5</a></li>
-                <li><a href="#verse-6">Verse 6</a></li>
-                <li><a href="#verse-7">Verse 7</a></li>
-                <li><a href="#verse-8">Verse 8</a></li>
-            </ul>
+            
+            <div class="navigation-section">
+                <ul id="menu-list">
+                    <li><a href="#verse-1">Verse 1</a></li>
+                    <li><a href="#verse-2">Verse 2</a></li>
+                    <li><a href="#verse-3">Verse 3</a></li>
+                    <li><a href="#verse-4">Verse 4</a></li>
+                    <li><a href="#verse-5">Verse 5</a></li>
+                    <li><a href="#verse-6">Verse 6</a></li>
+                    <li><a href="#verse-7">Verse 7</a></li>
+                    <li><a href="#verse-8">Verse 8</a></li>
+                </ul>
+            </div>
+            <div class="toggle-section">
+                <button id="toggleView" style="width: 100%; padding: 12px 16px; background: #007aff; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; transition: background 0.2s ease;">
+                    ${document.body.classList.contains('simple-view') ? 'Switch to Detailed Edition' : 'Switch to Simple Edition'}
+                </button>
+                ${document.body.classList.contains('simple-view')
+                    ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word translation</small>'
+                    : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown</small>'}
+            </div>
         </div>
     `;
     document.body.appendChild(menuPopup);
+
+    // Get references to the elements
+    const toggleViewBtn = menuPopup.querySelector('#toggleView');
+
+    // Attach the event listener
+    toggleViewBtn.addEventListener('click', toggleViewHandler);
 
     // Event listeners
     menuPopup.addEventListener('click', (e) => {
@@ -172,6 +198,7 @@ function createMenuPopup() {
 
 if (hamburgerMenu) {
     hamburgerMenu.addEventListener('click', () => {
+        console.log('Hamburger menu clicked');
         if (!menuPopup) {
             createMenuPopup();
         }
