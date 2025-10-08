@@ -138,11 +138,12 @@ td:nth-child(2) {
     grid-column: 3;
 }
 td strong {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arial Unicode MS', Arial, Helvetica, sans-serif;
     font-size: calc(18px * var(--font-scale));
     color: #1d1d1f;
     font-weight: normal;
 }
+
 tr.separator td {
     height: 8px;
     padding: 0;
@@ -251,9 +252,9 @@ tr.separator.secondPart td {
     td:nth-child(2) {
         width: 55%;
     }
-.font-controls {
-top: -14px;
-}
+    .font-controls {
+    top: -14px;
+    }
     .verse-section {
         margin: 0 auto 24px;
     }
@@ -289,7 +290,7 @@ top: -14px;
 /* Simple view styles */
 .simple-sanskrit {
     display: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arial Unicode MS', Arial, Helvetica, sans-serif;
     font-size: calc(22px * var(--font-scale));
     color: #1d1d1f;
     line-height: 1.8;
@@ -414,9 +415,3 @@ body.simple-view .simple-sanskrit {
     border: 1px solid rgba(0, 122, 255, 0.2);
 }
 
-/* Mobile adjustments for simple view */
-@media (max-width: 768px) {
-    body.simple-view .simple-sanskrit {
-        font-size: calc(18px * var(--font-scale));
-    }
-}

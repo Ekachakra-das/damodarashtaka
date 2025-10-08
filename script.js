@@ -5,6 +5,73 @@ const btnMinus = document.getElementById('font-minus');
 const btnDefault = document.getElementById('font-default');
 const btnPlus = document.getElementById('font-plus');
 
+// Language settings
+let currentLanguage = localStorage.getItem('damodarashtakam-language') || 'en';
+
+// View preference settings
+let currentView = localStorage.getItem('damodarashtakam-view') || 'detailed';
+
+// Apply saved view preference on page load
+if (currentView === 'simple') {
+    document.body.classList.add('simple-view');
+}
+
+// Apply language class to body for styling
+document.body.classList.add(`lang-${currentLanguage}`);
+
+// Function to load verses based on current language
+function loadVerses() {
+    const versesContainer = document.getElementById('verses');
+    if (!versesContainer) return;
+
+    const versesFile = currentLanguage === 'ru' ? 'verses-ru.html' : 'verses.html';
+
+    fetch(versesFile)
+        .then(response => response.text())
+        .then(html => {
+            versesContainer.innerHTML = html;
+            // Add IDs to verse sections for navigation
+            const verseSections = versesContainer.querySelectorAll('.verse-section');
+            verseSections.forEach((section, index) => {
+                section.id = `verse-${index + 1}`;
+            });
+        })
+        .catch(error => {
+            console.error('Error loading verses:', error);
+            // Fallback to English if Russian fails
+            if (currentLanguage === 'ru') {
+                currentLanguage = 'en';
+                localStorage.setItem('damodarashtakam-language', 'en');
+                loadVerses();
+            }
+        });
+}
+
+// Function to toggle language
+function toggleLanguage() {
+    // Remove current language class
+    document.body.classList.remove(`lang-${currentLanguage}`);
+
+    currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
+
+    // Add new language class
+    document.body.classList.add(`lang-${currentLanguage}`);
+
+    localStorage.setItem('damodarashtakam-language', currentLanguage);
+
+    // Reload verses with new language
+    loadVerses();
+
+    // Update menu button text
+    this.textContent = currentLanguage === 'en' ? 'Switch to Russian' : 'Switch to English';
+
+    // Close menu and force recreate on next open
+    if (menuPopup) {
+        menuPopup.classList.remove('show');
+    }
+    menuPopup = null;
+}
+
 function updateFontSize() {
     document.documentElement.style.setProperty('--font-scale', currentFontScale);
     btnMinus.classList.remove('active');
@@ -41,11 +108,17 @@ function toggleViewHandler() {
     const isSimple = body.classList.contains('simple-view');
     if (isSimple) {
         body.classList.remove('simple-view');
+        currentView = 'detailed';
         this.textContent = 'Switch to Simple Edition';
     } else {
         body.classList.add('simple-view');
+        currentView = 'simple';
         this.textContent = 'Switch to Detailed Edition';
     }
+
+    // Save view preference
+    localStorage.setItem('damodarashtakam-view', currentView);
+
     // Close the menu if open
     if (menuPopup) {
         menuPopup.classList.remove('show');
@@ -106,20 +179,8 @@ if (playBtn && audioBlock) {
     });
 }
 
-// --- Load verses from verses.html ---
-const versesContainer = document.getElementById('verses');
-if (versesContainer) {
-    fetch('verses.html')
-        .then(response => response.text())
-        .then(html => {
-            versesContainer.innerHTML = html;
-            // Add IDs to verse sections for navigation
-            const verseSections = versesContainer.querySelectorAll('.verse-section');
-            verseSections.forEach((section, index) => {
-                section.id = `verse-${index + 1}`;
-            });
-        });
-}
+// --- Load verses based on current language ---
+loadVerses();
 
 // --- Register Service Worker for PWA ---
 if ('serviceWorker' in navigator) {
@@ -162,8 +223,11 @@ function createMenuPopup() {
                     ${document.body.classList.contains('simple-view') ? 'Switch to Detailed Edition' : 'Switch to Simple Edition'}
                 </button>
                 ${document.body.classList.contains('simple-view')
-                    ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word translation</small>'
+                    ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word breakdown with grammatical analysis</small>'
                     : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown</small>'}
+                <button id="toggleLanguage" style="width: 100%; padding: 10px 16px; margin-top: 12px; background: #28a745; color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: background 0.2s ease;">
+                    ${currentLanguage === 'en' ? 'Switch to Russian' : 'Switch to English'}
+                </button>
             </div>
         </div>
     `;
@@ -171,9 +235,11 @@ function createMenuPopup() {
 
     // Get references to the elements
     const toggleViewBtn = menuPopup.querySelector('#toggleView');
+    const toggleLanguageBtn = menuPopup.querySelector('#toggleLanguage');
 
-    // Attach the event listener
+    // Attach the event listeners
     toggleViewBtn.addEventListener('click', toggleViewHandler);
+    toggleLanguageBtn.addEventListener('click', toggleLanguage);
 
     // Event listeners
     menuPopup.addEventListener('click', (e) => {
