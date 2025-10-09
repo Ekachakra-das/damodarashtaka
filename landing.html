@@ -407,11 +407,11 @@
 
         <div id="install" class="install-section">
             <h3>📱 ⚡ Install as native app <small style="font-weight: normal;">(works offline)</small></h3>
+            <p>
+                <b>Open</b> the app in your browser: <a href="index.html">Damodarāṣṭakam</a>
+            </p>   
             <ol class="install-steps">
-                <li>
-                    
-                    <div class="install-text"><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></div>
-                </li>
+
                 <li>
                     <span class="install-icon"><i class="fab fa-android"></i></span>
                     <div class="install-text"><strong>On Android/Chromium:</strong> tap the browser menu → <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong></div>
@@ -437,15 +437,29 @@
 
                         <p style="color: #64748b; margin: 10px 0 -20px;">
                             Translation of the prayer is based on the book:<br>
-                            <a href="https://vasudeva.ru/knigi/vedicheskie/haridev-das-oduhotvorenie-uma-s-pomoschju-osmyslennogo-bhadzhana-2006" target="_blank" style="color: #4f8cff; text-decoration: none;">Haridev Das - Elevating of the Mind through Meaningful Bhajana</a>
+                            <span>
+                                Haridev Das - Elevating of the Mind through Meaningful Bhajana
+                                <a href="https://vasudeva.ru/knigi/vedicheskie/haridev-das-oduhotvorenie-uma-s-pomoschju-osmyslennogo-bhadzhana-2006" target="_blank" rel="noopener noreferrer" class="external-link-icon" aria-label="Open source in new tab" style="display:inline-flex;vertical-align:text-bottom;margin-left:8px;color:#4f8cff;text-decoration:none;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L18.59 5H14V3z"/>
+                                        <path d="M5 5h5V3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+                                    </svg>
+                                </a>
+                            </span>
                         </p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Guard against missing elements to prevent runtime errors if the markup changes
             const installBtn = document.querySelector('.btn-ghost');
             const installSection = document.getElementById('install');
+
+            if (!installBtn || !installSection) {
+                // If either element is missing, do nothing. This keeps the page resilient.
+                return;
+            }
 
             installBtn.addEventListener('click', function(e) {
                 e.preventDefault();
