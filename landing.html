@@ -269,17 +269,40 @@
         }
         .install-steps {
             list-style: none;
-            padding-left: 6px;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
         }
         .install-steps li {
-            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            align-items: center;
+            gap: 12px;
             color: #475569;
             font-size: 16px;
         }
-        .install-steps li i {
+        .install-icon {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             color: #667eea;
-            margin-right: 8px;
-            font-size: 16px;
+            font-size: 20px;
+        }
+        .install-text {
+            display: block;
+            color: #475569;
+            line-height: 1.4;
+        }
+        /* Inline share icon inside the instruction text (keeps previous .share-icon styles as well) */
+        .share-icon-inline {
+            width: 22px;
+            height: 22px;
+            vertical-align: text-bottom;
+            margin-left: 8px;
+            color: #667eea;
         }
         .btn {
             display: inline-block;
@@ -385,10 +408,22 @@
         <div id="install" class="install-section">
             <h3>📱 ⚡ Install as native app <small style="font-weight: normal;">(works offline)</small></h3>
             <ol class="install-steps">
-                <li><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></li>
-                <li><i class="fab fa-android"></i> <strong>On Android/Chromium:</strong> tap the browser menu → <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong></li>
-                <li><i class="fab fa-apple"></i> <strong>On iOS:</strong><br><span style="padding-left: 25px;"><strong>Safari or Chrome:</strong> tap Share button <svg class="share-icon" viewBox="12 0 40 45" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M30.3 13.7L25 8.4l-5.3 5.3-1.4-1.4L25 5.6l6.7 6.7z"/><path d="M24 7h2v21h-2z"/><path d="M35 40H15c-1.7 0-3-1.3-3-3V19c0-1.7 1.3-3 3-3h7v2h-7c-.6 0-1 .4-1 1v18c0 .6.4 1 1 1h20c.6 0 1-.4 1-1V19c0-.6-.4-1-1-1h-7v-2h7c1.7 0 3 1.3 3 3v18c0 1.7-1.3 3-3 3z"/></svg> → "Add to Home Screen"</span></li>
-                <li><i class="fas fa-desktop"></i> <strong>Desktop Chrome:</strong> Use the install button in the address bar or in the menu find → <strong>Install</strong></li>
+                <li>
+                    
+                    <div class="install-text"><strong>Open</strong> the app in your browser: <a href="index.html">Damodarāṣṭakam</a></div>
+                </li>
+                <li>
+                    <span class="install-icon"><i class="fab fa-android"></i></span>
+                    <div class="install-text"><strong>On Android/Chromium:</strong> tap the browser menu → <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong></div>
+                </li>
+                <li>
+                    <span class="install-icon"><i class="fab fa-apple"></i></span>
+                    <div class="install-text"><strong>On iOS:</strong> <strong>Safari or Chrome:</strong> tap the Share button <svg class="share-icon-inline" viewBox="0 0 50 50" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M30.3 13.7L25 8.4l-5.3 5.3-1.4-1.4L25 5.6l6.7 6.7z"/><path d="M24 7h2v21h-2z"/><path d="M35 40H15c-1.7 0-3-1.3-3-3V19c0-1.7 1.3-3 3-3h7v2h-7c-.6 0-1 .4-1 1v18c0 .6.4 1 1 1h20c.6 0 1-.4 1-1V19c0-.6-.4-1-1-1h-7v-2h7c1.7 0 3 1.3 3 3v18c0 1.7-1.3 3-3 3z"/></svg> → <strong>"Add to Home Screen"</strong></div>
+                </li>
+                <li>
+                    <span class="install-icon"><i class="fas fa-desktop"></i></span>
+                    <div class="install-text"><strong>Desktop Chrome:</strong> Use the install button in the address bar or in the menu find → <strong>Install</strong></div>
+                </li>
             </ol>
         </div>
 
