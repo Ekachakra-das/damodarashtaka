@@ -1,4 +1,4 @@
-const CACHE_NAME = 'damodarashtakam-v3.1';
+const CACHE_NAME = 'damodarashtakam-v3.2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -27,6 +27,11 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Skip caching for external analytics scripts to ensure they update
+  if (event.request.url.includes('cdn.counter.dev')) {
+    return fetch(event.request);
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
