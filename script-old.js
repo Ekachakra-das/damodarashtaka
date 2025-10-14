@@ -1,4 +1,4 @@
-// Damodarāṣṭakam JS with improved translation system
+// Damodarāṣṭakam JS
 // Font size controls
 let currentFontScale = 1;
 const btnMinus = document.getElementById('font-minus');
@@ -7,8 +7,6 @@ const btnPlus = document.getElementById('font-plus');
 
 // Language settings
 let currentLanguage = localStorage.getItem('damodarashtakam-language') || 'en';
-let translations = {};
-const availableLanguages = ['en', 'ru', 'it'];
 
 // View preference settings
 let currentView = localStorage.getItem('damodarashtakam-view') || 'detailed';
@@ -21,57 +19,12 @@ if (currentView === 'simple') {
 // Apply language class to body for styling
 document.body.classList.add(`lang-${currentLanguage}`);
 
-// Load translations from JSON file
-async function loadTranslations(lang) {
-    try {
-        const response = await fetch(`translations/${lang}.json`);
-        if (!response.ok) throw new Error(`Failed to load ${lang} translations`);
-        translations = await response.json();
-        return translations;
-    } catch (error) {
-        console.error(`Error loading translations for ${lang}:`, error);
-        // Fallback to English
-        if (lang !== 'en') {
-            return loadTranslations('en');
-        }
-        return {};
-    }
-}
-
-// Helper function to get nested translation value
-function getTranslation(key) {
-    const keys = key.split('.');
-    let value = translations;
-    for (const k of keys) {
-        if (value && typeof value === 'object') {
-            value = value[k];
-        } else {
-            return key; // Return key if translation not found
-        }
-    }
-    return value || key;
-}
-
-// Apply translations to DOM elements
-function applyTranslations() {
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        element.innerHTML = getTranslation(key);
-    });
-}
-
 // Function to load verses based on current language
 function loadVerses() {
     const versesContainer = document.getElementById('verses');
     if (!versesContainer) return;
 
-    const versesFiles = {
-        'en': 'verses.html',
-        'ru': 'verses-ru.html',
-        'it': 'verses-it.html'
-    };
-    
-    const versesFile = versesFiles[currentLanguage] || 'verses.html';
+    const versesFile = currentLanguage === 'ru' ? 'verses-ru.html' : 'verses.html';
 
     fetch(versesFile)
         .then(response => response.text())
@@ -85,8 +38,8 @@ function loadVerses() {
         })
         .catch(error => {
             console.error('Error loading verses:', error);
-            // Fallback to English if loading fails
-            if (currentLanguage !== 'en') {
+            // Fallback to English if Russian fails
+            if (currentLanguage === 'ru') {
                 currentLanguage = 'en';
                 localStorage.setItem('damodarashtakam-language', 'en');
                 loadVerses();
@@ -94,29 +47,23 @@ function loadVerses() {
         });
 }
 
-// Function to switch language
-async function switchLanguage(newLang) {
-    if (!availableLanguages.includes(newLang)) {
-        console.error(`Language ${newLang} not available`);
-        return;
-    }
-
+// Function to toggle language
+function toggleLanguage() {
     // Remove current language class
     document.body.classList.remove(`lang-${currentLanguage}`);
 
-    currentLanguage = newLang;
+    currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
 
     // Add new language class
     document.body.classList.add(`lang-${currentLanguage}`);
 
     localStorage.setItem('damodarashtakam-language', currentLanguage);
 
-    // Load translations and apply them
-    await loadTranslations(currentLanguage);
-    applyTranslations();
-
     // Reload verses with new language
     loadVerses();
+
+    // Update menu button text
+    this.textContent = currentLanguage === 'en' ? 'Switch to Russian' : 'Switch to English';
 
     // Close menu and force recreate on next open
     if (menuPopup) {
@@ -162,11 +109,11 @@ function toggleViewHandler() {
     if (isSimple) {
         body.classList.remove('simple-view');
         currentView = 'detailed';
-        this.textContent = getTranslation('menu.switchToSimple');
+        this.textContent = currentLanguage === 'ru' ? 'Простая версия' : 'Switch to Simple Edition';
     } else {
         body.classList.add('simple-view');
         currentView = 'simple';
-        this.textContent = getTranslation('menu.switchToDetailed');
+        this.textContent = currentLanguage === 'ru' ? 'Подробная версия' : 'Switch to Detailed Edition';
     }
 
     // Save view preference
@@ -232,6 +179,9 @@ if (playBtn && audioBlock) {
     });
 }
 
+// --- Load verses based on current language ---
+loadVerses();
+
 // --- Register Service Worker for PWA ---
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -252,58 +202,38 @@ let menuPopup = null;
 function createMenuPopup() {
     menuPopup = document.createElement('div');
     menuPopup.className = 'menu-popup';
-    
-    // Language configuration with flags (emoji)
-    const languageConfig = {
-        'en': { name: 'EN', flag: '🇬🇧' },
-        'ru': { name: 'RU', flag: '🇷🇺' },
-        'it': { name: 'IT', flag: '🇮🇹' }
-    };
-    
-    // Build language flag buttons for all languages
-    const languageFlagButtons = availableLanguages
-        .map(lang => {
-            const config = languageConfig[lang];
-            const isActive = lang === currentLanguage ? 'active' : '';
-            return `<div class="language-flag-btn ${isActive}" data-lang="${lang}">
-                <div class="flag">${config.flag}</div>
-                <div class="lang-name">${config.name}</div>
-            </div>`;
-        }).join('');
-    
     menuPopup.innerHTML = `
         <div class="menu-content">
             <span class="close-menu">&times;</span>
             
             <div class="navigation-section">
                 <ul id="menu-list">
-                    <li><a href="#verse-1">${getTranslation('menu.verse')} 1</a></li>
-                    <li><a href="#verse-2">${getTranslation('menu.verse')} 2</a></li>
-                    <li><a href="#verse-3">${getTranslation('menu.verse')} 3</a></li>
-                    <li><a href="#verse-4">${getTranslation('menu.verse')} 4</a></li>
-                    <li><a href="#verse-5">${getTranslation('menu.verse')} 5</a></li>
-                    <li><a href="#verse-6">${getTranslation('menu.verse')} 6</a></li>
-                    <li><a href="#verse-7">${getTranslation('menu.verse')} 7</a></li>
-                    <li><a href="#verse-8">${getTranslation('menu.verse')} 8</a></li>
+                    <li><a href="#verse-1">${currentLanguage === 'ru' ? 'Стих 1' : 'Verse 1'}</a></li>
+                    <li><a href="#verse-2">${currentLanguage === 'ru' ? 'Стих 2' : 'Verse 2'}</a></li>
+                    <li><a href="#verse-3">${currentLanguage === 'ru' ? 'Стих 3' : 'Verse 3'}</a></li>
+                    <li><a href="#verse-4">${currentLanguage === 'ru' ? 'Стих 4' : 'Verse 4'}</a></li>
+                    <li><a href="#verse-5">${currentLanguage === 'ru' ? 'Стих 5' : 'Verse 5'}</a></li>
+                    <li><a href="#verse-6">${currentLanguage === 'ru' ? 'Стих 6' : 'Verse 6'}</a></li>
+                    <li><a href="#verse-7">${currentLanguage === 'ru' ? 'Стих 7' : 'Verse 7'}</a></li>
+                    <li><a href="#verse-8">${currentLanguage === 'ru' ? 'Стих 8' : 'Verse 8'}</a></li>
                 </ul>
             </div>
             <div class="toggle-section">
                 <button id="toggleView" style="width: 100%; padding: 12px 16px; background: #007aff; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; transition: background 0.2s ease;">
                     ${document.body.classList.contains('simple-view')
-                        ? getTranslation('menu.switchToDetailed')
-                        : getTranslation('menu.switchToSimple')}
+                        ? (currentLanguage === 'ru' ? 'Подробная версия' : 'Switch to Detailed Edition')
+                        : (currentLanguage === 'ru' ? 'Простая версия' : 'Switch to Simple Edition')}
                 </button>
                 ${document.body.classList.contains('simple-view')
-                    ? `<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">${getTranslation('menu.detailedExplanation')}</small>`
-                    : `<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">${getTranslation('menu.simpleExplanation')}</small>`}
-                
-                <button id="languageSelector" class="language-selector-btn">
-                    ${getTranslation('menu.chooseLanguage')}
+                    ? (currentLanguage === 'ru'
+                        ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Подробная версия показывает пословный перевод</small>'
+                        : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Detailed edition shows word-by-word breakdown</small>')
+                    : (currentLanguage === 'ru'
+                        ? '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Простая версия показывает только санскритский текст и полный перевод, без разбивки по словам</small>'
+                        : '<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown</small>')}
+                <button id="toggleLanguage" style="width: 100%; padding: 10px 16px; margin-top: 12px; background: #28a745; color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: background 0.2s ease;">
+                    ${currentLanguage === 'en' ? 'Switch to Russian' : 'Switch to English'}
                 </button>
-                
-                <div id="languageFlagsContainer" class="language-flags-container">
-                    ${languageFlagButtons}
-                </div>
             </div>
         </div>
     `;
@@ -311,32 +241,11 @@ function createMenuPopup() {
 
     // Get references to the elements
     const toggleViewBtn = menuPopup.querySelector('#toggleView');
-    const languageSelectorBtn = menuPopup.querySelector('#languageSelector');
-    const languageFlagsContainer = menuPopup.querySelector('#languageFlagsContainer');
-    const languageFlagBtns = menuPopup.querySelectorAll('.language-flag-btn');
+    const toggleLanguageBtn = menuPopup.querySelector('#toggleLanguage');
 
     // Attach the event listeners
     toggleViewBtn.addEventListener('click', toggleViewHandler);
-    
-    // Language selector button - toggle flags display and hide button
-    languageSelectorBtn.addEventListener('click', function() {
-        const isShowing = languageFlagsContainer.classList.contains('show');
-        if (!isShowing) {
-            languageFlagsContainer.classList.add('show');
-            languageSelectorBtn.classList.add('hidden');
-        }
-    });
-    
-    // Language flag buttons
-    languageFlagBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const newLang = this.getAttribute('data-lang');
-            if (newLang !== currentLanguage) {
-                switchLanguage(newLang);
-            }
-        });
-    });
-
+    toggleLanguageBtn.addEventListener('click', toggleLanguage);
 
     // Event listeners
     menuPopup.addEventListener('click', (e) => {
@@ -368,12 +277,3 @@ if (hamburgerMenu) {
         menuPopup.classList.add('show');
     });
 }
-
-// Initialize the app
-async function init() {
-    await loadTranslations(currentLanguage);
-    applyTranslations();
-    loadVerses();
-}
-
-init();

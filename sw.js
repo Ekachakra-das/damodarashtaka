@@ -1,4 +1,4 @@
-const CACHE_NAME = 'damodarashtakam-v3.2';
+const CACHE_NAME = 'damodarashtakam-v3.9';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,6 +6,10 @@ const urlsToCache = [
   '/script.js',
   '/verses.html',
   '/verses-ru.html',
+  '/verses-it.html',
+  '/translations/en.json',
+  '/translations/ru.json',
+  '/translations/it.json',
   '/manifest.json',
   '/img/1 Large.jpeg',
   '/img/2 Large.jpeg',

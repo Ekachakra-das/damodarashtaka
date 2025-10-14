@@ -253,22 +253,18 @@ function createMenuPopup() {
     menuPopup = document.createElement('div');
     menuPopup.className = 'menu-popup';
     
-    // Language configuration with flags (emoji)
-    const languageConfig = {
-        'en': { name: 'EN', flag: '🇬🇧' },
-        'ru': { name: 'RU', flag: '🇷🇺' },
-        'it': { name: 'IT', flag: '🇮🇹' }
-    };
-    
-    // Build language flag buttons for all languages
-    const languageFlagButtons = availableLanguages
+    // Build language switcher buttons
+    const languageButtons = availableLanguages
+        .filter(lang => lang !== currentLanguage)
         .map(lang => {
-            const config = languageConfig[lang];
-            const isActive = lang === currentLanguage ? 'active' : '';
-            return `<div class="language-flag-btn ${isActive}" data-lang="${lang}">
-                <div class="flag">${config.flag}</div>
-                <div class="lang-name">${config.name}</div>
-            </div>`;
+            const langNames = {
+                'en': 'English',
+                'ru': 'Русский',
+                'it': 'Italiano'
+            };
+            return `<button class="language-switch-btn" data-lang="${lang}" style="width: 100%; padding: 10px 16px; margin-top: 12px; background: #28a745; color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: background 0.2s ease;">
+                Switch to ${langNames[lang]}
+            </button>`;
         }).join('');
     
     menuPopup.innerHTML = `
@@ -296,14 +292,7 @@ function createMenuPopup() {
                 ${document.body.classList.contains('simple-view')
                     ? `<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">${getTranslation('menu.detailedExplanation')}</small>`
                     : `<small style="display: block; margin-top: 6px; font-size: 12px; color: #8e8e93; text-align: center; line-height: 1.3;">${getTranslation('menu.simpleExplanation')}</small>`}
-                
-                <button id="languageSelector" class="language-selector-btn">
-                    ${getTranslation('menu.chooseLanguage')}
-                </button>
-                
-                <div id="languageFlagsContainer" class="language-flags-container">
-                    ${languageFlagButtons}
-                </div>
+                ${languageButtons}
             </div>
         </div>
     `;
@@ -311,32 +300,17 @@ function createMenuPopup() {
 
     // Get references to the elements
     const toggleViewBtn = menuPopup.querySelector('#toggleView');
-    const languageSelectorBtn = menuPopup.querySelector('#languageSelector');
-    const languageFlagsContainer = menuPopup.querySelector('#languageFlagsContainer');
-    const languageFlagBtns = menuPopup.querySelectorAll('.language-flag-btn');
+    const languageSwitchBtns = menuPopup.querySelectorAll('.language-switch-btn');
 
     // Attach the event listeners
     toggleViewBtn.addEventListener('click', toggleViewHandler);
     
-    // Language selector button - toggle flags display and hide button
-    languageSelectorBtn.addEventListener('click', function() {
-        const isShowing = languageFlagsContainer.classList.contains('show');
-        if (!isShowing) {
-            languageFlagsContainer.classList.add('show');
-            languageSelectorBtn.classList.add('hidden');
-        }
-    });
-    
-    // Language flag buttons
-    languageFlagBtns.forEach(btn => {
+    languageSwitchBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const newLang = this.getAttribute('data-lang');
-            if (newLang !== currentLanguage) {
-                switchLanguage(newLang);
-            }
+            switchLanguage(newLang);
         });
     });
-
 
     // Event listeners
     menuPopup.addEventListener('click', (e) => {

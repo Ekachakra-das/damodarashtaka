@@ -8,7 +8,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="apple-mobile-web-app-title" content="Damodara">
         <title>Damodarāṣṭakam - Vaishnava Prayer App | Sanskrit Text with Multi-Language Translations</title>
-        <meta name="description" content="Experience the Damodarāṣṭakam prayer with Sanskrit text, word-by-word analysis, English, Russian and upcoming multi-language translations. Offline-capable PWA for spiritual practice.">
+        <meta name="description" content="Experience the Damodarāṣṭakam prayer with Sanskrit text, word-by-word analysis, English, Russian, Italian and upcoming multi-language translations. Offline-capable PWA for spiritual practice.">
         <meta name="keywords" content="Damodarāṣṭakam, Damodara, Krishna, Vaishnava prayer, Sanskrit, Hindu prayer, spiritual app, offline prayer, Kartika month, Padma Purana, multi-language, translations">
         <meta name="author" content="Damodarāṣṭakam App">
         <meta name="robots" content="index, follow">
@@ -51,7 +51,7 @@
                 "name": "Padma Purana"
             },
             "genre": "Religious Text",
-            "inLanguage": ["sa", "en", "ru"],
+            "inLanguage": ["sa", "en", "ru", "it"],
             "url": "https://damodarashtakam.laulyam.com/",
             "image": "https://damodarashtakam.laulyam.com/favicon/icon-512.png",
             "applicationCategory": "LifestyleApplication",
@@ -68,23 +68,18 @@
     <div class="header-section">
         <div id="hamburger-menu">☰</div>
         <h1>
-            <span class="text-en">Damodarāṣṭakam</span>
-            <span class="text-ru">Дамодараштака</span>
+            <span data-i18n="title">Damodarāṣṭakam</span>
         </h1>
 
         <div class="damodara-description">
             <div class="damodara-desc-source">
-                <span class="text-en">Found in the Padma Purana of Krishna Dvaipayana Vyasa,<br>
+                <span data-i18n="description.source">Found in the Padma Purana of Krishna Dvaipayana Vyasa,<br>
                 spoken by Satyavrata Muni in a conversation with Narada Muni and Saunaka Rishi.</span>
-                <span class="text-ru">Найдено в Падма Пуране Кришны Дваипаяны Вьясы,<br>
-                произнесено мудрецом Сатьявратой Муни в беседе с Нарадой Муни и Шаунакой Риши.</span>
             </div>
             <div class="damodara-desc-quote">
-                <span class="text-en">"In the month of Kartika one should worship Lord Damodara and daily recite the prayer known
-                as Damodarashtaka, which has been spoken by the sage Satyavrata and which attracts Lord Damodara."</span>
-                <span class="text-ru">"В месяц Картика следует поклоняться Господу Дамодаре и ежедневно повторять молитву,
-                известную как Дамодараштака, которая была произнесена мудрецом Сатьявратой и которая привлекает Господа Дамодару."</span><br>
-                <span class="damodara-desc-ref">(Sri Hari-bhakti-vilasa 2.16.198)</span>
+                <span data-i18n="description.quote">"In the month of Kartika one should worship Lord Damodara and daily recite the prayer known
+                as Damodarashtaka, which has been spoken by the sage Satyavrata and which attracts Lord Damodara."</span><br>
+                <span class="damodara-desc-ref" data-i18n="description.reference">(Sri Hari-bhakti-vilasa 2.16.198)</span>
             </div>
         </div>
 
@@ -101,8 +96,7 @@
                         <polygon points="7,6 13,9 7,12" fill="#fff"/>
                     </svg>
                 </span>
-                <span class="text-en">Play Damodarashtakam</span>
-                <span class="text-ru">Послушать Дамодараштаку</span>
+                <span data-i18n="audio.playButton">Play Damodarashtakam</span>
             </button>
         </div>
         <div class="damodara-audio" id="damodara-audio" style="display:none;">
