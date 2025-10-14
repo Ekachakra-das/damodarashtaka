@@ -1,4 +1,4 @@
-const CACHE_NAME = 'damodarashtakam-v3.9';
+const CACHE_NAME = 'damodarashtakam-v4';
 const urlsToCache = [
   '/',
   '/index.html',
