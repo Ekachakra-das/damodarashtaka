@@ -1,0 +1,25 @@
+{
+  "title": "Damodarāṣṭakam",
+  "description": {
+    "source": "Il Damodarāṣṭakam si trova nel Padma Purana di Krishna Dvaipayana Vyasa,<br> enunciato da Satyavrata Muni in una conversazione con Narada Muni e Saunaka Rishi.",
+    "quote": "\"Nel mese di Kartika si dovrebbe adorare il Signore Damodara e recitare quotidianamente la preghiera conosciuta come Damodarashtaka, che è stata enunciata dal saggio Satyavrata e che attrae il Signore Damodara.\"",
+    "reference": "(Sri Hari-bhakti-vilasa 2.16.198)"
+  },
+  "audio": {
+    "playButton": "Ascolta Damodarashtakam"
+  },
+  "menu": {
+    "verse": "Verso",
+    "switchToSimple": "Passa all'Edizione Semplice",
+    "switchToDetailed": "Passa all'Edizione Dettagliata",
+    "simpleExplanation": "L'edizione semplice mostra solo il testo sanscrito e la traduzione completa, senza la suddivisione parola per parola",
+    "detailedExplanation": "L'edizione dettagliata mostra la suddivisione parola per parola",
+    "chooseLanguage": "🌐 Scegli la lingua",
+    "chooseTheme": "🎨 Tema",
+    "themeAuto": "Auto",
+    "themeLight": "Chiaro",
+    "themeDark": "Scuro",
+    "openSettings": "Impostazioni",
+    "closeSettings": "Indietro"
+  }
+}

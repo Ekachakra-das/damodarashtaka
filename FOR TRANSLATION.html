@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Damodarāṣṭakam - TRANSLATION</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+      line-height: 1.5;
+      max-width:900px;
+      margin:0 auto;
+    }
+table {
+  border-collapse: separate; /* нужно для скругления */
+  border-spacing: 0; /* убирает промежутки между ячейками */
+  margin-bottom: 25px;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden; /* чтобы углы обрезались корректно */
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  vertical-align: top;
+  font-size: 1.3rem;
+}
+
+    [contenteditable="true"]:focus {
+      outline: 2px solid #5c9ded;
+      background: #f0f8ff;
+    }
+/* первая колонка (санскрит) — уже и фиксированной ширины */
+table td:first-child, table th:first-child {
+  width: 35%;
+  min-width: 200px;
+}
+
+/* вторая колонка (перевод) — шире */
+table td:nth-child(2), table th:nth-child(2) {
+  width: 65%;
+}
+    
+    
+    .verse-title {
+      font-weight: bold;
+      margin-top: 20px;
+      padding: 5px 8px;
+      font-size: 1.6rem;
+    }
+    button#save {
+      display: inline-block;
+      margin-bottom: 20px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      position:fixed;
+      right: calc((100vw - 900px) / 2);
+}
+
+@media (max-width: 940px) {
+  button#save {
+    right: 20px;
+  }
+}
+    button#save:hover {
+      background: #357ad9;
+    }
+.simple-sanskrit {
+  font-family: "Noto Sans Devanagari", "Times New Roman", serif;
+  font-size: 1.4rem;
+  background: #fffbea;
+  border-left: 4px solid #f1c40f;
+  padding: 10px 12px;
+  margin: 12px 0;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.full-translation {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+  padding: 12px 14px;
+  margin: 12px 0 25px 0;
+  line-height: 1.6;
+  color: #333;
+}
+  </style>
+</head>
+<body>
+
+<div class="buttonContainer">
+    <button id="save">💾 Save changes</button>
+</div>
+
+<!-- Damodarāṣṭakam Verses -->
+
+    
+    <!-- VERSE 1 -->
+    <div class="verse-section">
+        <div class="verse-title">Verse 1</div>
+        <div class="container">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>namāmīśvaraṃ</strong></td>
+                        <td>[I] bow down to the Supreme Lord</td>
+                    </tr>
+                    <tr>
+                        <td><strong>sac-cid-ānanda-</strong></td>
+                        <td>eternal, full of knowledge and bliss</td>
+                    </tr>
+                    <tr>
+                        <td><strong>rūpaṃ</strong></td>
+                        <td>form</td>
+                    </tr>
+                    
+                    <tr class="separator"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>lasat-kuṇḍalaṃ</strong></td>
+                        <td>whose earrings play and swing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>gokule</strong></td>
+                        <td>[and who] in Gokula</td>
+                    </tr>
+                    <tr>
+                        <td><strong>bhrājamānaṃ</strong></td>
+                        <td>[is] splendidly shining</td>
+                    </tr>
+
+                    <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>yaśodā-</strong></td>
+                        <td>Before Yaśodā</td>
+                    </tr>
+                    <tr>
+                        <td><strong>bhiyolūkhalād</strong></td>
+                        <td>out of fear from the wooden mortar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>dhāvamānaṃ</strong></td>
+                        <td>running away</td>
+                    </tr>
+
+                        <tr class="separator"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>parāmṛṣṭam</strong></td>
+                        <td>[He is] caught</td>
+                    </tr>
+                    <tr>
+                        <td><strong>atyantato</strong></td>
+                        <td>[by] extremely</td>
+                    </tr>
+                    <tr>
+                        <td><strong>drutyā</strong></td>
+                        <td>swift</td>
+                    </tr>
+                    <tr>
+                        <td><strong>gopyā</strong></td>
+                        <td>gopī</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="simple-sanskrit">namāmīśvaram sac-cid-ānanda-rūpam<br>lasat-kuṇḍalam gokule bhrājamānam<br>yaśodā-bhiyolūkhalād dhāvamānam<br>parāmṛṣṭam atyantato drutyā gopyā</div>
+            <div class="full-translation">
+                 To the Supreme Lord, whose form is the embodiment of eternal existence,
+knowledge, and bliss, whose shark-shaped earrings are swinging to and fro, who is
+beautifully shining in the divine realm of Gokula, who I (due to the offense of
+breaking the pot of yogurt that His mother was churning into butter and then stealing
+the butter that was kept hanging from a swing) is quickly running from the wooden 
+grinding mortar in fear of mother Yasoda, but who has been caught from behind by
+her who ran after Him with greater speed--to that Supreme Lord, Sri Damodara, I
+offer my humble obeisances. 
+            </div>
+        </div>
+    </div>
+
+    <!-- VERSE 2 -->
+    <div class="verse-section">
+        <div class="verse-title">Verse 2</div>
+        <div class="container">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>rudantaṃ</strong></td>
+                        <td>Crying</td>
+                    </tr>
+                    <tr>
+                        <td><strong>muhur</strong></td>
+                        <td>again and again</td>
+                    </tr>
+                    <tr>
+                        <td><strong>netra-yugmam</strong></td>
+                        <td>two eyes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>mṛjantam</strong></td>
+                        <td>rubbing</td>
+                    </tr>
+
+                    <tr class="separator"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>karāmbhodja-yugmena</strong></td>
+                        <td>with His two lotus hands</td>
+                    </tr>
+                    <tr>
+                        <td><strong>sātaṅka-</strong></td>
+                        <td>with fear</td>
+                    </tr>
+                    <tr>
+                        <td><strong>netram</strong></td>
+                        <td>in [His] eyes.</td>
+                    </tr>
+
+                    <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>muhuḥ</strong></td>
+                        <td>[At that moment, on Him] constantly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>śvāsa-</strong></td>
+                        <td>from [intermittent] breathing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>kampa-</strong></td>
+                        <td>trembles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>trirekhāṅka-kaṇṭha-</strong></td>
+                        <td>[on His neck] marked with three lines,</td>
+                    </tr>
+
+                    <tr class="separator"><td colspan="2"></td></tr>
+
+                    <tr>
+                        <td><strong>sthita-</strong></td>
+                        <td>located there</td>
+                    </tr>
+                    <tr>
+                        <td><strong>graivam</strong></td>
+                        <td>the necklace.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>dāmodaram</strong></td>
+                        <td>[I bow to Him,] Damodara,</td>
+                    </tr>
+                    <tr>
+                        <td><strong>bhakti-baddham</strong></td>
+                        <td>who is bound by devotion.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="simple-sanskrit">rudantaḿ muhur netra-yugmaḿ mṛjantam<br>karāmbhoja-yugmena sātańka-netram<br>muhuḥ śvāsa-kampa-trirekhāńka-kaṇṭha<br>sthita-graivaḿ dāmodaraḿ bhakti-baddham</div>
+            <div class="full-translation">
+                Seeing the whipping stick in His mother’s hand, He is crying and rubbing His eyes again and again with
+His two lotus hands. His eyes are filled with fear, and the necklace of pearls around His neck, which is
+marked with three lines like a conchshell, is shaking because of His quick breathing due to crying. To
+this Supreme Lord, Sri Damodara, whose belly is bound not with ropes but with His mother’s pure love, I offer
+my humble obeisances.
+            </div>
+        </div>
+    </div>
+
+<!-- VERSE 3 -->
+<div class="verse-section">
+    <div class="verse-title">Verse 3</div>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>itīdṛk-sva-līlābhir</strong></td>
+                    <td>In this way, by His own pastimes</td>
+                </tr>
+                <tr>
+                    <td><strong>ānanda-kuṇḍe</strong></td>
+                    <td>into a blissful lake</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>sva-ghoṣaṁ</strong></td>
+                    <td>His [eternal associates in the form of] cowherds and gopis</td>
+                </tr>
+                <tr>
+                    <td><strong>nimajjantam</strong></td>
+                    <td>He immerses.</td>
+                </tr>
+                <tr>
+                    <td><strong>ākhyāpayantam</strong></td>
+                    <td>[Also] He declares</td>
+                </tr>
+
+                <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>tadīyeṣita-</strong></td>
+                    <td>to those who His supremacy</td>
+                </tr>
+                <tr>
+                    <td><strong>jñeṣu</strong></td>
+                    <td>realize [that]</td>
+                </tr>
+                <tr>
+                    <td><strong>bhaktair</strong></td>
+                    <td>by His loving devotees</td>
+                </tr>
+                <tr>
+                    <td><strong>jitatvam</strong></td>
+                    <td>[He can] be conquered.</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>punaḥ</strong></td>
+                    <td>Again</td>
+                </tr>
+                <tr>
+                    <td><strong>prematas</strong></td>
+                    <td>with love</td>
+                </tr>
+                <tr>
+                    <td><strong>tam</strong></td>
+                    <td>Him</td>
+                </tr>
+                <tr>
+                    <td><strong>śatāvṛtti</strong></td>
+                    <td>hundreds of times</td>
+                </tr>
+                <tr>
+                    <td><strong>vande</strong></td>
+                    <td>[I] glorify.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="simple-sanskrit">itīdṛk-sva-līlābhir ānanda-kuṇḍe<br>sva-ghoṣaṁ nimajjantam ākhyāpayantam<br>tadīyeṣita-jñeṣu bhaktair jitatvam<br>punaḥ prematas tam śatāvṛtti vande</div>
+        <div class="full-translation">
+            By such childhood pastimes as this He is drowning the inhabitants of Gokula in pools of ecstasy, and
+is revealing to those devotees who are absorbed in knowledge of His supreme majesty and opulence that He is
+only conquered by devotees whose pure love is imbued with intimacy and is free from all conceptions of awe
+and reverence. With great love I again offer my obeisances to Lord Damodara hundreds and hundreds of times.
+        </div>
+    </div>
+</div>
+
+<!-- VERSE 4 -->
+<div class="verse-section">
+    <div class="verse-title">Verse 4</div>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>varaṁ</strong></td>
+                    <td>[As] a gift,</td>
+                </tr>
+                <tr>
+                    <td><strong>deva</strong></td>
+                    <td>O Lord,</td>
+                </tr>
+                <tr>
+                    <td><strong>mokṣaṁ na</strong></td>
+                    <td>not liberation,</td>
+                </tr>
+                <tr>
+                    <td><strong>mokṣāvadhiṁ vā</strong></td>
+                    <td>not the highest pinnacle of liberation (the realm of Srī Vaikuṇṭhaloka)</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>na cāñyam</strong></td>
+                    <td>not even [anything] else,</td>
+                </tr>
+                <tr>
+                    <td><strong>vṛṇe 'haṁ</strong></td>
+                    <td>I will not choose for myself from You</td>
+                </tr>
+                <tr>
+                    <td><strong>vareśād</strong></td>
+                    <td>from the Bestower [of all] gifts,</td>
+                </tr>
+                <tr>
+                    <td><strong>apīha</strong></td>
+                    <td>even.</td>
+                </tr>
+
+                <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>idaṁ te vapur</strong></td>
+                    <td>This Your form,</td>
+                </tr>
+                <tr>
+                    <td><strong>nātha</strong></td>
+                    <td>O Lord,</td>
+                </tr>
+                <tr>
+                    <td><strong>gopāla-bālaṁ</strong></td>
+                    <td>of the little cowherd boy,</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>sadā</strong></td>
+                    <td>always</td>
+                </tr>
+                <tr>
+                    <td><strong>me manasy</strong></td>
+                    <td>in my mind</td>
+                </tr>
+                <tr>
+                    <td><strong>āvirāstāṁ</strong></td>
+                    <td>may be manifested.</td>
+                </tr>
+                <tr>
+                    <td><strong>kim anyaiḥ</strong></td>
+                    <td>What meaning in anything else?</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="simple-sanskrit">varaṁ deva mokṣaṁ na mokṣāvadhiṁ vā<br>na cānyam vṛṇe 'ham vareśād apīha<br>idaṁ te vapur nātha gopāla-bālam<br>sadā me manasy āvirāstām kim anyaiḥ</div>
+        <div class="full-translation">
+0 Lord, although You are able to give all kinds of benedictions, I do not pray to You for the boon of
+impersonal liberation, nor the highest liberation of eternal life in Vaikuntha, nor any other boon [which may
+be obtained by executing the nine processes of bhakti]. O Lord, I simply wish that this form of Yours as
+Bala Gopala in Vrindavana may ever be manifest in my heart, for what is the use to me of any other boon
+besides this?
+        </div>
+    </div>
+</div>
+
+
+<!-- VERSE 5 -->
+<div class="verse-section">
+    <div class="verse-title">Verse 5</div>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>idaṁ te</strong></td>
+                    <td>This Your</td>
+                </tr>
+                <tr>
+                    <td><strong>mukhāmbhojam</strong></td>
+                    <td>lotus-like face,</td>
+                </tr>
+                <tr>
+                    <td><strong>atyanta-nīlair</strong></td>
+                    <td>by very dark blue</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>vṛtaṁ</strong></td>
+                    <td>surrounded</td>
+                </tr>
+                <tr>
+                    <td><strong>kuṇṭalaiḥ</strong></td>
+                    <td>by curling locks of hair,</td>
+                </tr>
+                <tr>
+                    <td><strong>snigdha-</strong></td>
+                    <td>slightly</td>
+                </tr>
+                <tr>
+                    <td><strong>raktaiś ca</strong></td>
+                    <td>reddish-tinted,</td>
+                </tr>
+                <tr>
+                    <td><strong>gopyā</strong></td>
+                    <td>by the gopī (Śrī Yaśodā)</td>
+                </tr>
+
+                <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>muhuḥ</strong></td>
+                    <td>again and again</td>
+                </tr>
+                <tr>
+                    <td><strong>cumbitaṁ</strong></td>
+                    <td>kissed</td>
+                </tr>
+                <tr>
+                    <td><strong>bimba-</strong></td>
+                    <td>with lips</td>
+                </tr>
+                <tr>
+                    <td><strong>raktādharam</strong></td>
+                    <td>red as the bimba fruit.</td>
+                </tr>
+                <tr>
+                    <td><strong>me</strong></td>
+                    <td>In my</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+
+                <tr>
+                    <td><strong>manasi</strong></td>
+                    <td>mind</td>
+                </tr>
+                <tr>
+                    <td><strong>āvirāstāṁ</strong></td>
+                    <td>may it be manifest.</td>
+                </tr>
+                <tr>
+                    <td><strong>alaṁ</strong></td>
+                    <td>And this is enough,</td>
+                </tr>
+                <tr>
+                    <td><strong>lakṣa-lābhaiḥ</strong></td>
+                    <td>instead of millions of attainments of other boons.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="simple-sanskrit">idaṁ te mukha-ambhojaṁ avyakta-nīlaiḥ<br>vṛtaṁ kuṇṭalaiḥ snigdha-raktaiḥ ca gopyā<br>muhuḥ cumbitaṁ bimba-rakta-adharaṁ me<br>manasi āvir āstāṁ alaṁ lakṣa-lābhaiḥ</div>
+        <div class="full-translation">
+            0 Lord, Your lotus face, which is encircled by locks of soft black hair tinged with red, is kissed again and
+again by mother Yasoda, and Your lips are reddish like the bimba fruit. May this beautiful vision of Your lotus
+face be ever manifest in my heart. Thousands and thousands of other benedictions are of no use to me.
+        </div>
+    </div>
+</div>
+
+
+<!-- VERSE 6 -->
+<div class="verse-section">
+    <div class="verse-title">Verse 6</div>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>namo</strong></td>
+                    <td>I bow down to You</td>
+                </tr>
+                <tr>
+                    <td><strong>deva</strong></td>
+                    <td>O Lord!</td>
+                </tr>
+                <tr>
+                    <td><strong>dāmodarānanta</strong></td>
+                    <td>whose belly is bound with a rope! O limitless Lord!</td>
+                </tr>
+                <tr>
+                    <td><strong>viṣṇo</strong></td>
+                    <td>O all-pervading Lord!</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>prasīda prabho</strong></td>
+                    <td>Have mercy on me, O my Master!</td>
+                </tr>
+                <tr>
+                    <td><strong>duḥkha-</strong></td>
+                    <td>[Over the one who] is suffering</td>
+                </tr>
+                <tr>
+                    <td><strong>jālābdhi</strong></td>
+                    <td>in a snare as vast as an ocean</td>
+                </tr>
+                <tr>
+                    <td><strong>magnam</strong></td>
+                    <td>is immersed.</td>
+                </tr>
+
+                <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>kṛpā-dṛṣṭi-</strong></td>
+                    <td>Merciful glance</td>
+                </tr>
+                <tr>
+                    <td><strong>vṛṣṭyāti</strong></td>
+                    <td>by showering</td>
+                </tr>
+                <tr>
+                    <td><strong>dīnam batānu</strong></td>
+                    <td>to very fallen, Oh, please give Your favor!</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>gṛhāṇeṣa</strong></td>
+                    <td>O Lord!</td>
+                </tr>
+                <tr>
+                    <td><strong>mām ajñam</strong></td>
+                    <td>to me, ignorant</td>
+                </tr>
+                <tr>
+                    <td><strong>edhi</strong></td>
+                    <td>please become</td>
+                </tr>
+                <tr>
+                    <td><strong>akṣi-dṛśyaḥ</strong></td>
+                    <td>to [my] eyes, visible.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="simple-sanskrit">namo deva dāmodarānanta viṣṇo<br>prasīda prabho duḥkha-jālābdhi-magnam<br>kṛpā-dṛṣṭi-vṛṣṭyāti-dīnaḿ batānu<br>gṛhāṇeṣa mām ajñam edhy akṣi-dṛśyaḥ</div>
+        <div class="full-translation">
+            0 Supreme Godhead, I offer my obeisances unto You. O Damodara! O Ananta! O Vishnu! O master! O my
+Lord, be pleased upon me. By showering Your glance of mercy upon me, deliver this poor ignorant fool who
+is immersed in an ocean of worldly sorrows, and become visible to my eyes.
+        </div>
+    </div>
+</div>
+
+
+<!-- VERSE 7 -->
+<div class="verse-section">
+    <div class="verse-title">Verse 7</div>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>kuverātma-jau</strong></td>
+                    <td>The two sons of Kuvera (named Nalakūvara and Maṇigrīva)</td>
+                </tr>
+                <tr>
+                    <td><strong>baddha-mūrtyaiva</strong></td>
+                    <td>by you alone, bound with ropes to the grinding mortar.</td>
+                </tr>
+                <tr>
+                    <td><strong>yadvat</strong></td>
+                    <td>since they were like that (cursed by Nārada to take birth as twin arjuna trees)</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>tvayā</strong></td>
+                    <td>by You</td>
+                </tr>
+                <tr>
+                    <td><strong>mocitau</strong></td>
+                    <td>they who were liberated.</td>
+                </tr>
+                <tr>
+                    <td><strong>bhakti-bhājau</strong></td>
+                    <td>Love and devotion to You experiencing</td>
+                </tr>
+                <tr>
+                    <td><strong>kṛtau ca</strong></td>
+                    <td>You made them also.</td>
+                </tr>
+
+                <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>tathā</strong></td>
+                    <td>In the same way</td>
+                </tr>
+                <tr>
+                    <td><strong>prema-bhaktim</strong></td>
+                    <td>love for You</td>
+                </tr>
+                <tr>
+                    <td><strong>svakām</strong></td>
+                    <td>as your wealth</td>
+                </tr>
+                <tr>
+                    <td><strong>me prayaccha</strong></td>
+                    <td>please give unto me.</td>
+                </tr>
+
+                <tr class="separator"><td colspan="2"></td></tr>
+
+                <tr>
+                    <td><strong>na mokṣe</strong></td>
+                    <td>Not for liberation</td>
+                </tr>
+                <tr>
+                    <td><strong>graho</strong></td>
+                    <td>consistency of effort</td>
+                </tr>
+                <tr>
+                    <td><strong>me 'sti</strong></td>
+                    <td>mine, exists</td>
+                </tr>
+                <tr>
+                    <td><strong>dāmodareha</strong></td>
+                    <td>O Lord Dāmodara!</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="simple-sanskrit">kuverātma-jau baddha-mūrtyaiva yadvat<br>tvayā mocitau bhakti-bhājau kṛtau ca<br>tathā prema-bhaktim svakām me prayaccha<br>na mokṣe graho me 'sti dāmodareha</div>
+        <div class="full-translation">
+            0 Lord Damodara, just as the two sons of Kuvera—Manigriva and Nalakuvara—were delivered from the
+curse of Narada and made into great devotees by You in Your form as a baby tied with rope to a wooden
+grinding mortar, in the same way, please give to me Your own prema-bhakti. I only long for this and have
+no desire for any kind of liberation.
+        </div>
+    </div>
+</div>
+
+
+<!-- VERSE 8 -->
+<div class="verse-section">
+  <div class="verse-title">Verse 8</div>
+  <div class="container">
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>namas te</strong></td>
+          <td>Obeisances unto</td>
+        </tr>
+    </selection>
+        <tr>
+          <td><strong>'stu dāmne</strong></td>
+          <td>the rope around Your waist</td>
+        </tr>
+        <tr>
+          <td><strong>sphurat dīpti-dhāmne</strong></td>
+          <td>[which is] the abode of dazzling radiance.</td>
+        </tr>
+
+        <tr class="separator"><td colspan="2"></td></tr>
+        
+        <tr>
+          <td><strong>tvadīyodarāyātha</strong></td>
+          <td>Obeisances unto Your belly</td>
+        </tr>
+        <tr>
+          <td><strong>viśvasya dhāmne</strong></td>
+          <td>which is the abode of the entire universe</td>
+        </tr>
+
+        <tr class="separator secondPart"><td colspan="2"></td></tr>
+
+        <tr>
+          <td><strong>namo</strong></td>
+          <td>Obeisances</td>
+        </tr>
+        <tr>
+          <td><strong>rādhikāyai</strong></td>
+          <td>unto Śrīmatī Rādhikā</td>
+        </tr>
+        <tr>
+          <td><strong>tvadīya-priyāyai</strong></td>
+          <td>unto Your beloved.</td>
+        </tr>
+
+        <tr class="separator"><td colspan="2"></td></tr>
+
+        <tr>
+          <td><strong>namo</strong></td>
+          <td>Obeisances [to the owner]</td>
+        </tr>
+        <tr>
+          <td><strong>'nanta-līlāya</strong></td>
+          <td>of unlimited pastimes</td>
+        </tr>
+        <tr>
+          <td><strong>devāya tubhyam</strong></td>
+          <td>unto Your transcendental nature.</td>
+        </tr>
+        </tr>
+      </tbody>
+    </table>
+    <div class="simple-sanskrit">namas te 'stu dāmne sphurat dīpti-dhāmne<br>tvadīya-udarāyatha viśvasya dhāmne<br>namo rādhikāyai tvadīya-priyāyai<br>namo 'nanta-līlāya devāya tubhyam</div>
+    <div class="full-translation">
+      O Lord Damodara, I first of all offer my obeisances to the brilliantly effulgent rope
+which binds Your belly. I then offer my obeisances to Your belly, which is the abode
+of the entire universe. I humbly bow down to Your most beloved Srimati Radharani,
+and I offer all obeisances to You, the Supreme Lord, who displays unlimited pastimes. 
+    </div>
+</div></div>
+
+<script>
+  // Selector for all editable elements
+  const editableSelector = "table td, .simple-sanskrit, .full-translation";
+  
+  // Function to toggle contenteditable
+  const setEditable = (state) => {
+    document.querySelectorAll(editableSelector).forEach(el => {
+      if (state) {
+        el.setAttribute("contenteditable", "true");
+      } else {
+        el.removeAttribute("contenteditable");
+      }
+    });
+  };
+  
+  // Make elements editable on load
+  setEditable(true);
+
+  // Save button
+  document.getElementById("save").addEventListener("click", () => {
+    setEditable(false);
+    
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: "text/html" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "damodarastakam_edited.html";
+    a.click();
+    
+    setEditable(true);
+  });
+</script>
+
+</body>
+</html>

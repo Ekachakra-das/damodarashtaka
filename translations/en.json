@@ -1,0 +1,25 @@
+{
+  "title": "Damodarāṣṭakam",
+  "description": {
+    "source": "Found in the Padma Purana of Krishna Dvaipayana Vyasa,<br>spoken by Satyavrata Muni in a conversation with Narada Muni and Saunaka Rishi.",
+    "quote": "\"In the month of Kartika one should worship Lord Damodara and daily recite the prayer known as Damodarashtaka, which has been spoken by the sage Satyavrata and which attracts Lord Damodara.\"",
+    "reference": "(Sri Hari-bhakti-vilasa 2.16.198)"
+  },
+  "audio": {
+    "playButton": "Play Damodarashtakam"
+  },
+  "menu": {
+    "verse": "Verse",
+    "switchToSimple": "Switch to Simple Edition",
+    "switchToDetailed": "Switch to Detailed Edition",
+    "simpleExplanation": "Simple edition shows only Sanskrit text and full translation, without word-by-word breakdown",
+    "detailedExplanation": "Detailed edition shows word-by-word breakdown",
+    "chooseLanguage": "🌐 Choose Language",
+    "chooseTheme": "🎨 Theme",
+    "themeAuto": "Auto",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "openSettings": "Settings",
+    "closeSettings": "Back"
+  }
+}
